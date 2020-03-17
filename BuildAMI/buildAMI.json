@@ -1,6 +1,5 @@
 {
     "variables": {
-     //   "region": "eu-west-3",
 	"region": "{{user `app_region`}},
         "ssh_username": "ubuntu",
         "instance_type": "t2.micro",
