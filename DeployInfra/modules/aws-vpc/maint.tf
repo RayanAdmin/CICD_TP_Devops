@@ -1,12 +1,13 @@
 # VPC
 resource "aws_vpc" "vpc" {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_support   = "true"
-  enable_dns_hostnames = "true"
-  enable_classiclink   = "false"
-  instance_tenancy     = "default"
+
+  cidr_block           = var.network-address
+  enable_dns_support   = var.dns_support
+  enable_dns_hostnames = var.dns_hostnames
+  enable_classiclink   = false
+  instance_tenancy     = default
 
   tags = {
-    Name = "${var.env}-vpc"
+    Name = var.name_vpc
   }
 }
