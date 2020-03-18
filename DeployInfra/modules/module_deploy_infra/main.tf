@@ -2,6 +2,10 @@ provider "aws" {
   region = "eu-west-3"
 }
 
+module "projet Karim" {
+    module_path = "."
+}
+
 
 terraform {
   backend "s3" {
