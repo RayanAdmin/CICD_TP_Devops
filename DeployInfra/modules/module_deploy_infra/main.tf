@@ -2,7 +2,7 @@ provider "aws" {
   region = "eu-west-3"
 }
 
-module "projet Karim" {
+module "projet_Karim" {
     module_path = "."
 }
 
