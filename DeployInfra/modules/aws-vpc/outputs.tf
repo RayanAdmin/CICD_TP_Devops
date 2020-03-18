@@ -14,7 +14,7 @@ output "id" {
 
 
 
-output "route-table" {
+output "route_table" {
   description = "Route-table of the VPC"
   value       = aws_vpc.vpc.default_route_table_id
 }
