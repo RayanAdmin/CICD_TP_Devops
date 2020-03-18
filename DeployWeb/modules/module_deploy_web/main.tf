@@ -22,7 +22,7 @@ data "aws_ami" "selected" {
   }
   filter {
     name   = "tag:Name"
-    values = ["${var.env}-${var.app_name}-AMI"]
+    values = ["${var.image_id}"]
   }
   most_recent = true
 }
