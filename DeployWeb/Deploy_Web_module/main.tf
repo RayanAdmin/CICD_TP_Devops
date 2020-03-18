@@ -2,6 +2,13 @@ provider "aws" {
   region = "eu-west-3"
 }
 
+module "projet Karim" {
+    module_path = "modules/my_cluster_of_instances"
+    ami_id = "${data.aws_ami.ubuntu.id}"
+    subnet_id = "${aws_subnet.default.id}"
+    instance_type = "t2.micro" # No need of this line as there's a default value
+    cluster_size = 2 # Here we override the default value
+}
 
 terraform {
   backend "s3" {
