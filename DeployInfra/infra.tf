@@ -121,7 +121,7 @@ resource "aws_instance" "nat" {
 # Nat SG
 resource "aws_security_group" "allow_nat" {
   name        = "allow_web"
-  vpc_id      = aws_vpc_id
+  vpc_id      = "aws_vpc_id"
   description = "Allow inbound traffic"
 }
 
@@ -163,7 +163,7 @@ resource "aws_default_route_table" "main-private" {
 
 ## Public
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc_id
+  vpc_id = "aws_vpc_id"
 
   route {
     cidr_block = "0.0.0.0/0"
