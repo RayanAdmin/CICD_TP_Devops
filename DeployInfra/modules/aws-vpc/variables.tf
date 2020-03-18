@@ -7,18 +7,18 @@ variable "network_address" {
 variable "dns_support" {
   description = "activer DNS Support"
   type = string
-  default = {true}
+  default = {"true"}
 }
 
 variable "dns_hostnames" {
   description = "activer resolution DNS"
   type = string
-  default = {true}
+  default = {"true"}
 }
 
 variable "name_vpc" {
   description = "nom du vpc"
   type = string
-  default = {vpc}
+  default = {"vpc"}
 }
 
