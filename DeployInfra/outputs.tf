@@ -3,7 +3,7 @@ output "aws_vpc_arn" {
   value       = module.create_vpc.arn
 }
 
-output "aws_vpc_arn_id" {
+output "aws_vpc_id" {
   description = "Name (id) of the VPC"
   value       = module.create_vpc.name
 }
