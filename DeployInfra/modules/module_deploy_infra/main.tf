@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "projet_Karim" {
-    module_path = "."
+    module_path = "modules/module_deploy_infra"
 }
 
 
