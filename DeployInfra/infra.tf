@@ -101,7 +101,7 @@ resource "aws_subnet" "subnet-private-3" {
 
 # Nat Instance
 resource "aws_instance" "nat" {
-  ami                    = "ami-01bbd0213bd3425a8"
+  ami                    = "var.image_id"
   instance_type          = "t2.micro"
   subnet_id              = aws_subnet.subnet-public-1.id
   vpc_security_group_ids = [aws_security_group.allow_nat.id]
@@ -149,7 +149,7 @@ resource "aws_security_group_rule" "ingress_allow_private" {
 ## Private
 ### Use Main Route Table
 resource "aws_default_route_table" "main-private" {
-  default_route_table_id = aws_vpc.vpc.default_route_table_id
+  default_route_table_id = "aws_route_table"
 
   route {
     cidr_block  = "0.0.0.0/0"
