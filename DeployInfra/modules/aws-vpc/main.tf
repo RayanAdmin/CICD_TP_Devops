@@ -13,7 +13,7 @@ resource "aws_vpc" "vpc" {
 }
 
 
-output "aws_vpc.vpc.id" {
+output "aws_vpc.vpc.arn" {
   description = "ARN of the VPC"
   value       = aws_vpc.vpc.arn
 }
