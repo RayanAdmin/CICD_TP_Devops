@@ -23,7 +23,7 @@ module "create_vpc" {
 
 # IGW
 resource "aws_internet_gateway" "igw" {
-  vpc_id = 'aws_vpc_id'
+  vpc_id = "aws_vpc_id"
 
   tags = {
     Name = "${var.env}-igw"
@@ -34,7 +34,7 @@ resource "aws_internet_gateway" "igw" {
 ## Public
 ### AZ1
 resource "aws_subnet" "subnet-public-1" {
-  vpc_id                  = 'aws_vpc_id'
+  vpc_id                  = aws_vpc_id
   cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = "true"
   availability_zone       = "eu-west-3a"
@@ -45,7 +45,7 @@ resource "aws_subnet" "subnet-public-1" {
 
 ### AZ2
 resource "aws_subnet" "subnet-public-2" {
-  vpc_id                  = 'aws_vpc_id'
+  vpc_id                  = aws_vpc_id
   cidr_block              = "10.0.2.0/24"
   map_public_ip_on_launch = "true"
   availability_zone       = "eu-west-3b"
