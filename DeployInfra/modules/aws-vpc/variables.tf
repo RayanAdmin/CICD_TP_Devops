@@ -1,4 +1,4 @@
-variable "network-address" {
+variable "network_address" {
   description = "Adresse du Reseau (format CICR)"
   type = string
   default = {}
