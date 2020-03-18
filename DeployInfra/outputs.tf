@@ -4,6 +4,6 @@ output "aws_vpc_arn" {
 }
 
 output "aws_vpc_arn_id" {
-  description = "Name (id) of the bucket"
+  description = "Name (id) of the VPC"
   value       = module.create_vpc.name
 }
