@@ -12,17 +12,13 @@ terraform {
   }
 }
 
-# VPC
-resource "aws_vpc" "vpc" {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_support   = "true"
-  enable_dns_hostnames = "true"
-  enable_classiclink   = "false"
-  instance_tenancy     = "default"
-
-  tags = {
-    Name = "${var.env}-vpc"
-  }
+module "create_vpc" {
+  source = "./modules/aws-vpc"
+  
+  network_address = "10.0.0.0/16"
+  dns_support = "true"
+  dns_hostnames = "true"
+  name_vpc = "${var.env}-vpc"
 }
 
 # IGW
