@@ -16,4 +16,9 @@ variable "dns_hostnames" {
   default = {true}
 }
 
+variable "name_vpc" {
+  description = "nom du vpc"
+  type = string
+  default = {vpc}
+}
 
