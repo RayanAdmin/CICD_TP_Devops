@@ -7,6 +7,12 @@ variable "env" {
   default = "dev"
 }
 
+variable "az_valable" {
+  description = "az-valable"
+  type        = list(string)
+  default     = ["eu-west-3a", "eu-west-3b", "eu-west-3c"]
+}
+
 variable "image" {
   type        = string
   description = "The id of the machine image (AMI) to use for the server."
@@ -38,71 +44,39 @@ resource "aws_internet_gateway" "igw" {
 # Subnets
 ## Public
 ### AZ1
-resource "aws_subnet" "subnet-public-1" {
-  vpc_id                  = "${module.create_vpc.aws_vpc_id}"
-  cidr_block              = "10.0.1.0/24"
-  map_public_ip_on_launch = "true"
-  availability_zone       = "eu-west-3a"
-  tags = {
-    Name = "${var.env}-subnet-public-1"
+  
+for (i = 1; i < 4; i++) {  
+  module "create-snetwork" {
+    source = "./modules/create-snetwork"
+    
+    subnet_name = "subnet-public-.${i}"
+    vpc_id                  = "${module.create_vpc.aws_vpc_id}"
+    cidr_block              = "10.0.${i}.0/24"
+    map_public_ip_on_launch = "true"
+    availability_zone       = vars.az_valable[i+1]
+    tags = {
+    Name = "${var.env}-subnet-public-.${i}"
+    }
+    
+  }
+}
+  
+for (i = 4; i < 7; i++) {  
+  module "create-snetwork" {
+    source = "./modules/create-snetwork"
+    
+    subnet_name = "subnet-public-.${i}"
+    vpc_id                  = "${module.create_vpc.aws_vpc_id}"
+    cidr_block              = "10.0.${i}.0/24"
+    map_public_ip_on_launch = "false"
+    availability_zone       = vars.az_valable[i-4]
+    tags = {
+    Name = "${var.env}-subnet-private-.${i}"
+    }
+    
   }
 }
 
-### AZ2
-resource "aws_subnet" "subnet-public-2" {
-  vpc_id                  = "${module.create_vpc.aws_vpc_id}"
-  cidr_block              = "10.0.2.0/24"
-  map_public_ip_on_launch = "true"
-  availability_zone       = "eu-west-3b"
-  tags = {
-    Name = "${var.env}-subnet-public-2"
-  }
-}
-
-### AZ3
-resource "aws_subnet" "subnet-public-3" {
-  vpc_id                  = "${module.create_vpc.aws_vpc_id}"
-  cidr_block              = "10.0.3.0/24"
-  map_public_ip_on_launch = "true"
-  availability_zone       = "eu-west-3c"
-  tags = {
-    Name = "${var.env}-subnet-public-3"
-  }
-}
-
-## Private
-### AZ1
-resource "aws_subnet" "subnet-private-1" {
-  vpc_id                  = "${module.create_vpc.aws_vpc_id}"
-  cidr_block              = "10.0.4.0/24"
-  map_public_ip_on_launch = "false"
-  availability_zone       = "eu-west-3a"
-  tags = {
-    Name = "${var.env}-subnet-private-1"
-  }
-}
-
-### AZ2
-resource "aws_subnet" "subnet-private-2" {
-  vpc_id                  = "${module.create_vpc.aws_vpc_id}"
-  cidr_block              = "10.0.5.0/24"
-  map_public_ip_on_launch = "false"
-  availability_zone       = "eu-west-3b"
-  tags = {
-    Name = "${var.env}-subnet-private-2"
-  }
-}
-
-### AZ3
-resource "aws_subnet" "subnet-private-3" {
-  vpc_id                  = "${module.create_vpc.aws_vpc_id}"
-  cidr_block              = "10.0.6.0/24"
-  map_public_ip_on_launch = "false"
-  availability_zone       = "eu-west-3c"
-  tags = {
-    Name = "${var.env}-subnet-private-3"
-  }
-}
 
 # Nat Instance
 resource "aws_instance" "nat" {
