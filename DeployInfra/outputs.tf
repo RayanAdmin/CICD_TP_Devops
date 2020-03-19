@@ -10,7 +10,7 @@ output "aws_vpc_id" {
 
 output "aws_route_table" {
   description = "Route-table of the VPC"
-  value       = module.create_vpc.aws_route_table
+  value       = module.create_vpc.route_table
 }
 
 for (i = 1; i < 4; i++) {
