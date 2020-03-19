@@ -85,7 +85,7 @@ for (i = 4; i < 7; i++) {
 resource "aws_instance" "nat" {
   ami                    = "${var.image}"
   instance_type          = "t2.micro"
-  subnet_id              = aws_subnet.subnet-public-1.id
+  subnet_id              = aws_subnet_subnet_private_${i}
   vpc_security_group_ids = [aws_security_group.allow_nat.id]
   source_dest_check      = "false"
 
