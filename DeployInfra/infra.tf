@@ -46,7 +46,7 @@ resource "aws_internet_gateway" "igw" {
 ### AZ1 / AZ2 / AZ3
   
 for (i = 1; i < 4; i++) {  
-  module "create-snetwork" {
+  module "create_snetwork" {
     source = "./modules/create-snetwork"
     
     subnet_name             = "subnet-public-.${i}"
