@@ -154,7 +154,7 @@ resource "aws_security_group_rule" "ingress_allow_private" {
 ## Private
 ### Use Main Route Table
 resource "aws_default_route_table" "main-private" {
-  default_route_table_id ="${module.create_vpc.aws_route_table}" 
+  default_route_table_id ="${module.create_vpc.default_route_table_id}" 
 
   route {
     cidr_block  = "0.0.0.0/0"
