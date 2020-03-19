@@ -1,19 +1,27 @@
-variable "network_address" {
-  description = "Adresse du Reseau (format CICR)"
+variable "subnet_name" {
+  description = "subnet_name"
   type = string
 }
 
-variable "dns_support" {
-  description = "activer DNS Support"
+variable "vpc_id" {
+  description = "vpc_id"
   type = string
 }
 
-variable "dns_hostnames" {
+variable "cidr_block" {
   description = "activer resolution DNS"
   type = string
 }
 
-variable "name_vpc" {
-  description = "nom du vpc"
+variable "availability_zone" {
+  description = "availability_zone"
   type = string
 }
+
+
+variable "tags" {
+  description = "availability_zone"
+  type = map(string)
+  default = {}
+}
+
