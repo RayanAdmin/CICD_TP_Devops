@@ -23,7 +23,7 @@ module "create_vpc" {
 
 # IGW
 resource "aws_internet_gateway" "igw" {
-  vpc_id = "aws_vpc_id"
+  vpc_id = "${var.aws_vpc_id}"
 
   tags = {
     Name = "${var.env}-igw"
