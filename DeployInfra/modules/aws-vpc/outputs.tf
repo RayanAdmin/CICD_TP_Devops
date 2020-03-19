@@ -6,7 +6,7 @@ output "arn" {
 
 
 
-output "aws_vpc.vpc.id" {
+output "aws_vpc_id" {
   description = "Name (id) of the VPC"
   value       = aws_vpc.vpc.id
 }
