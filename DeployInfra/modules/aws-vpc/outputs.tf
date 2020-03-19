@@ -12,12 +12,16 @@ output "aws_vpc_id" {
 }
 
 
-
 output "id" {
   description = "Name (id) of the VPC"
   value       = aws_vpc.vpc.id
 }
 
+
+output "aws_route_table" {
+  description = "Route-table of the VPC"
+  value       = aws_vpc.route_table
+}
 
 
 
