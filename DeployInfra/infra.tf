@@ -68,7 +68,7 @@ for (i = 4; i < 7; i++) {
   module "create-snetwork" {
     source = "./modules/create-snetwork"
     
-    subnet_name             = "subnet-public-.${i}"
+    subnet_name             = "subnet-private-.${i}"
     vpc_id                  = "${module.create_vpc.aws_vpc_id}"
     cidr_block              = "10.0.${i}.0/24"
     map_public_ip_on_launch = "false"
