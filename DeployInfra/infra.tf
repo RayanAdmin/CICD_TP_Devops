@@ -44,42 +44,86 @@ resource "aws_internet_gateway" "igw" {
 # Subnets
 ## Public
 ### AZ1 / AZ2 / AZ3
-  
-for (i = 1; i < 4; i++) {  
-  module "create_snetwork" {
-    source = "./modules/create-snetwork"
-    
-    subnet_name             = "subnet-public-.${i}"
-    vpc_id                  = "${module.create_vpc.aws_vpc_id}"
-    cidr_block              = "10.0.${i}.0/24"
-    map_public_ip_on_launch = "true"
-    availability_zone       = vars.az_valable[i+1]
-    tags = {
-    Name = "${var.env}-subnet-public-.${i}"
-    }
-    
-  }
-}
-  
-## Private
-### AZ1 / AZ2 / AZ3
-  
-for (i = 4; i < 7; i++) {  
-  module "create-snetwork" {
-    source = "./modules/create-snetwork"
-    
-    subnet_name             = "subnet-private-.${i}"
-    vpc_id                  = "${module.create_vpc.aws_vpc_id}"
-    cidr_block              = "10.0.${i}.0/24"
-    map_public_ip_on_launch = "false"
-    availability_zone       = vars.az_valable[i-4]
-    tags = {
-    Name = "${var.env}-subnet-private-.${i}"
-    }
-    
-  }
-}
 
+module "create_snetwork_public" {
+    source = "./modules/create-snetwork-public"
+    
+    subnet_name             = "subnet-public-1"
+    vpc_id                  = "${module.create_vpc.aws_vpc_id}"
+    cidr_block              = "10.0.1.0/24"
+    availability_zone       = vars.az_valable[0]
+    tags = {
+    Name = "${var.env}-subnet-public-1"
+    }
+    
+ }
+  
+ module "create_snetwork_public" {
+    source = "./modules/create-snetwork-public"
+    
+    subnet_name             = "subnet-public-2"
+    vpc_id                  = "${module.create_vpc.aws_vpc_id}"
+    cidr_block              = "10.0.2.0/24"
+    availability_zone       = vars.az_valable[1]
+    tags = {
+    Name = "${var.env}-subnet-public-2"
+    }
+    
+ }
+   
+  module "create_snetwork_public" {
+    source = "./modules/create-snetwork-public"
+    
+    subnet_name             = "subnet-public-3"
+    vpc_id                  = "${module.create_vpc.aws_vpc_id}"
+    cidr_block              = "10.0.3.0/24"
+    availability_zone       = vars.az_valable[2]
+    tags = {
+    Name = "${var.env}-subnet-public-3"
+    }
+    
+ }
+
+  module "create_snetwork_private" {
+    source = "./modules/create-snetwork-private"
+    
+    subnet_name             = "subnet-private-1"
+    vpc_id                  = "${module.create_vpc.aws_vpc_id}"
+    cidr_block              = "10.0.4.0/24"
+    availability_zone       = vars.az_valable[0]
+    tags = {
+    Name = "${var.env}-subnet-private-1"
+    }
+    
+ }
+    
+ module "create_snetwork_private" {
+    source = "./modules/create-snetwork-private"
+    
+    subnet_name             = "subnet-private-2"
+    vpc_id                  = "${module.create_vpc.aws_vpc_id}"
+    cidr_block              = "10.0.5.0/24"
+    availability_zone       = vars.az_valable[1]
+    tags = {
+    Name = "${var.env}-subnet-private-2"
+    }
+    
+ }
+ 
+module "create_snetwork_private" {
+    source = "./modules/create-snetwork-private"
+    
+    subnet_name             = "subnet-private-6"
+    vpc_id                  = "${module.create_vpc.aws_vpc_id}"
+    cidr_block              = "10.0.6.0/24"
+    availability_zone       = vars.az_valable[2]
+    tags = {
+    Name = "${var.env}-subnet-private-3"
+    }
+    
+ }
+  
+ 
 
 # Nat Instance
 resource "aws_instance" "nat" {
