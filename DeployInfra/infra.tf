@@ -7,6 +7,11 @@ variable "env" {
   default = "dev"
 }
 
+variable "image" {
+  type        = string
+  description = "The id of the machine image (AMI) to use for the server."
+  }
+
 terraform {
   backend "s3" {
   }
