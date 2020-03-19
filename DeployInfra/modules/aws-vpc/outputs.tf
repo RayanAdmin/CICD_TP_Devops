@@ -20,12 +20,12 @@ output "id" {
 
 output "aws_route_table" {
   description = "Route-table of the VPC"
-  value       = aws_vpc.route_table
+  value       = aws_vpc.vpc.default_route_table_id
 }
 
 
 
-output "route_table" {
+output "default_route_table_id" {
   description = "Route-table of the VPC"
   value       = aws_vpc.vpc.default_route_table_id
 }
